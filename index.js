@@ -13,3 +13,7 @@ function mult(a,b){
 function divide(a,b){
     return a / b
 }
+
+let first
+let second
+let operator
