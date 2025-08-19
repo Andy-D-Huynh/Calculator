@@ -31,3 +31,11 @@ function operation(first, second, operator){
         return "Invalid operator!"
     }      
 }
+
+const container = document.querySelector(".container")
+
+for(let i = 0; i < 10; i++){
+    let button = document.createElement("button")
+    button.textContent = `${i}`
+    container.appendChild(button)
+}
