@@ -29,6 +29,5 @@ function operation(first, second, operator){
         divide(first,second)
     } else {
         return "Invalid operator!"
-    }
-        
+    }      
 }
