@@ -33,9 +33,14 @@ function operation(first, second, operator){
 }
 
 const container = document.querySelector(".container")
+const display = document.querySelector(".display")
 
 for(let i = 0; i < 10; i++){
     let button = document.createElement("button")
     button.textContent = `${i}`
+    button.addEventListener("click", () =>
+    {
+        display.value += `${button.textContent}`
+    })
     container.appendChild(button)
 }
