@@ -14,19 +14,19 @@ function divide(a,b){
     return a / b
 }
 
-let first
-let second
-let operator
+let first = null
+let second = null
+let operator = null
 
 function operation(first, second, operator){
     if (operator == "+"){
-        add(first,second)
+        return add(first,second)
     } else if (operator == "-"){
-        sub(first,second)
+        return sub(first,second)
     } else if (operator == "*"){
-        mult(first,second)
+        return mult(first,second)
     } else if (operator == "/"){
-        divide(first,second)
+        return divide(first,second)
     } else {
         return "Invalid operator!"
     }      
@@ -35,7 +35,7 @@ function operation(first, second, operator){
 const container = document.querySelector(".container")
 const display = document.querySelector(".display")
 const operators = document.querySelectorAll(".operators")
-let value = parseInt(display.value)
+let value = Number(display.value)
 
 
 for(let i = 0; i < 10; i++){
@@ -43,7 +43,7 @@ for(let i = 0; i < 10; i++){
     button.textContent = `${i}`
     button.addEventListener("click", () => {
         display.value += `${button.textContent}`
-        value = parseInt(display.value)
+        value = Number(display.value)
         console.log(value)
     })
     container.appendChild(button)
@@ -53,6 +53,8 @@ let operatorsArr = [...operators]
 
 operatorsArr.forEach((operator) => {
     operator.addEventListener("click", () => {
+        const lastChar = display.value[display.value.length - 1]
+        if ("+-*/".includes(lastChar)) return
         display.value += `${operator.textContent}`
     })
 })
