@@ -35,6 +35,7 @@ function operation(first, second, operator){
 const container = document.querySelector(".container")
 const display = document.querySelector(".display")
 const operators = document.querySelectorAll(".operators")
+const equals = document.querySelector(".result")
 let value = Number(display.value)
 
 
@@ -44,7 +45,7 @@ for(let i = 0; i < 10; i++){
     button.addEventListener("click", () => {
         display.value += `${button.textContent}`
         value = Number(display.value)
-        console.log(value)
+        console.log(display.value)
     })
     container.appendChild(button)
 }
@@ -56,7 +57,21 @@ operatorsArr.forEach((operator) => {
         const lastChar = display.value[display.value.length - 1]
         if ("+-*/".includes(lastChar)) return
         display.value += `${operator.textContent}`
+        console.log(display.value)
     })
+})
+
+equals.addEventListener("click" , () => {
+    if (!display.value.includes("+") && !display.value.includes("-") && !display.value.includes("*") && !display.value.includes("/")){
+        display.value = display.value
+    } else {
+        if ("+-*/".includes(display.value[0])) return
+        opIndex = display.value.split('').findIndex(item => "+-*/".includes(item))
+        first = Number(display.value.slice(0, opIndex))
+        second = Number(display.value.slice(opIndex + 1, display.value.length))
+        operator = display.value[opIndex]
+        display.value = `${operation(first,second,operator)}`
+    }
 })
 
 // operators.addEventListener("click", () => {
