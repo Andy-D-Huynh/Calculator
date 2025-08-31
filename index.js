@@ -11,7 +11,7 @@ function mult(a,b){
 }
 
 function divide(a,b){
-    return a / b
+    return Math.round(a / b * 100) / 100
 }
 
 let first = null
@@ -36,6 +36,7 @@ const container = document.querySelector(".container")
 const display = document.querySelector(".display")
 const operators = document.querySelectorAll(".operators")
 const equals = document.querySelector(".result")
+const clear = document.querySelector(".delete")
 let value = Number(display.value)
 
 
@@ -70,6 +71,9 @@ equals.addEventListener("click" , () => {
     evaluateExpression();
 })
 
+clear.addEventListener("click", () => {
+    display.value = ""
+})
 
 function evaluateExpression(){
     if (!display.value.includes("+") && !display.value.includes("-") && !display.value.includes("*") && !display.value.includes("/")){
@@ -80,6 +84,10 @@ function evaluateExpression(){
         first = Number(display.value.slice(0, opIndex))
         second = Number(display.value.slice(opIndex + 1, display.value.length))
         operator = display.value[opIndex]
+        if (second == 0 && operator == "/"){
+            display.value = "Invalid operation! Click clear to remove this message."
+            return
+        }
         display.value = `${operation(first,second,operator)}`
     }
 }
