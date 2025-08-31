@@ -57,6 +57,10 @@ operatorsArr.forEach((operator) => {
         const firstChar = display.value[0]
         const lastChar = display.value[display.value.length - 1]
         if ("+-*/".includes(lastChar) || "+-*/".includes(firstChar)) return
+        middleOpIndex = display.value.split('').findIndex(item => "+-*/".includes(item))
+        if (middleOpIndex > 0 && middleOpIndex < display.value.length - 1){
+            evaluateExpression()
+        }
         display.value += `${operator.textContent}`
         console.log(display.value)
     })
