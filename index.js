@@ -1,13 +1,13 @@
 function add(a,b){
-    return a + b
+    return Math.round((a + b) * 100) / 100
 }
 
 function sub(a,b){
-    return a - b
+    return Math.round((a-b) * 100) / 100
 }
 
 function mult(a,b){
-    return a * b
+    return Math.round(a * b * 100) / 100
 }
 
 function divide(a,b){
@@ -46,7 +46,6 @@ for(let i = 0; i < 10; i++){
     button.addEventListener("click", () => {
         display.value += `${button.textContent}`
         value = Number(display.value)
-        console.log(display.value)
     })
     container.appendChild(button)
 }
