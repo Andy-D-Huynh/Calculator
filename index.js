@@ -54,8 +54,9 @@ let operatorsArr = [...operators]
 
 operatorsArr.forEach((operator) => {
     operator.addEventListener("click", () => {
+        const firstChar = display.value[0]
         const lastChar = display.value[display.value.length - 1]
-        if ("+-*/".includes(lastChar)) return
+        if ("+-*/".includes(lastChar) || "+-*/".includes(firstChar)) return
         display.value += `${operator.textContent}`
         console.log(display.value)
     })
