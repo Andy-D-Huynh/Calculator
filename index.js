@@ -63,6 +63,11 @@ operatorsArr.forEach((operator) => {
 })
 
 equals.addEventListener("click" , () => {
+    evaluateExpression();
+})
+
+
+function evaluateExpression(){
     if (!display.value.includes("+") && !display.value.includes("-") && !display.value.includes("*") && !display.value.includes("/")){
         display.value = display.value
     } else {
@@ -73,8 +78,7 @@ equals.addEventListener("click" , () => {
         operator = display.value[opIndex]
         display.value = `${operation(first,second,operator)}`
     }
-})
-
+}
 // operators.addEventListener("click", () => {
 //     display.value += `${operators.textContent}`      
 // })
