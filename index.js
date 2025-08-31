@@ -1,3 +1,5 @@
+let justCalculated = false
+
 function add(a,b){
     return Math.round((a + b) * 100) / 100
 }
@@ -33,21 +35,25 @@ function operation(first, second, operator){
 }
 
 const container = document.querySelector(".container")
+const digits = document.querySelector(".digits")
 const display = document.querySelector(".display")
 const operators = document.querySelectorAll(".operators")
-const equals = document.querySelector(".result")
+// const equals = document.querySelector(".result")
 const clear = document.querySelector(".delete")
-let value = Number(display.value)
 
 
 for(let i = 0; i < 10; i++){
     let button = document.createElement("button")
     button.textContent = `${i}`
     button.addEventListener("click", () => {
-        display.value += `${button.textContent}`
-        value = Number(display.value)
+        if (!justCalculated){
+            display.value += `${button.textContent}`
+        } else {
+            display.value = `${button.textContent}`
+        }     
+        
     })
-    container.appendChild(button)
+    digits.appendChild(button)
 }
 
 let operatorsArr = [...operators]
@@ -60,15 +66,20 @@ operatorsArr.forEach((operator) => {
         middleOpIndex = display.value.split('').findIndex(item => "+-*/".includes(item))
         if (middleOpIndex > 0 && middleOpIndex < display.value.length - 1){
             evaluateExpression()
+            justCalculated = false
         }
         display.value += `${operator.textContent}`
         console.log(display.value)
     })
 })
 
+let equals = document.createElement("button")
+equals.textContent = `=`
 equals.addEventListener("click" , () => {
     evaluateExpression();
+    justCalculated = true
 })
+digits.appendChild(equals)
 
 clear.addEventListener("click", () => {
     display.value = ""
