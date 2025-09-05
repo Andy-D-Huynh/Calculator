@@ -1,3 +1,5 @@
+// I guess keyboard support is just keydown??  readonly and key-mapping system... what does that mean??
+
 let justCalculated = false
 
 function add(a,b){
@@ -72,6 +74,10 @@ operatorsArr.forEach((operator) => {
         console.log(display.value)
     })
 })
+
+let decimal = document.createElement("button")
+decimal.textContent = "."
+digits.appendChild(decimal)
 
 let equals = document.createElement("button")
 equals.textContent = `=`
